@@ -1,0 +1,4 @@
+foo@bar.com
+this is not an email id
+good123@bad.com
+good123@bad.com

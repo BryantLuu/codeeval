@@ -1,0 +1,2 @@
+filename = ARGV.first
+print file.size(filename)

@@ -1,0 +1,65 @@
+def sum_numbers(numbers)
+position4 = 3
+@number_of_solutions = 0
+
+while position4 < (numbers.length)
+position1 = 0
+position2 = 1
+position3 = 2
+
+move_position3(position3, position4, position1, position2, numbers)
+position4 += 1
+end
+puts @number_of_solutions
+end
+
+def check_sum(number1, number2, number3, number4)
+return (number1 + number2 + number3 + number4)
+end
+
+def move_position3(starting_number, ending_number, position1, position2, numbers)#starting number is position3 and ending number is position4
+while starting_number < ending_number
+position1 = 0
+position2 = 1
+
+move_position2(position2, starting_number, position1, ending_number, numbers)
+if starting_number == (ending_number - 1)
+break
+else 
+starting_number += 1
+end
+end
+end
+
+def move_position2(starting_number, ending_number, position1, position4, numbers) #starting number is position2 and ending number is position3
+while starting_number < ending_number
+position1 = 0
+
+move_position1(position1, starting_number, ending_number, position4, numbers)
+
+if starting_number == (ending_number - 1)
+break
+else 
+starting_number += 1
+end
+end
+end
+
+def move_position1(starting_number, ending_number, position3, position4, numbers) #starting number is position1 and ending number is position2
+while starting_number < ending_number
+if check_sum(numbers[starting_number], numbers[ending_number], numbers[position3], numbers[position4]) == 0
+@number_of_solutions += 1
+end
+
+if starting_number == (ending_number - 1)
+break
+else 
+starting_number += 1
+end
+end
+end
+
+File.open(ARGV[0]).map(&:strip).each do |line|
+numbers = line.split(',').map{|i| i.to_i}
+sum_numbers(numbers)
+end
